@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>OBSIDIAN — Liquid Metal Sculpture</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--g1:#0d0d0d;--g2:#1c1c1c;--g3:#666;--g4:#a6a6a6;--w:#f1f1f1;
+--d:'Unbounded','Helvetica Neue',Arial,sans-serif;--t:'Manrope','Helvetica Neue',Arial,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{background:radial-gradient(ellipse at 50% 30%,#141414,#050505 70%) var(--bg);color:var(--w);font-family:var(--t);font-weight:300;overflow-x:clip;-webkit-font-smoothing:antialiased}
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+main{position:relative;z-index:1}
+.grain{position:fixed;inset:0;z-index:5;pointer-events:none;opacity:.09;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+nav{position:fixed;top:0;left:0;right:0;z-index:6;display:flex;justify-content:space-between;padding:calc(1.6rem + env(safe-area-inset-top,0px)) clamp(1.2rem,4vw,3.5rem) 0;font:500 .7rem var(--d);letter-spacing:.18em;text-transform:uppercase;mix-blend-mode:difference}
+.pad{padding-left:clamp(1.2rem,4vw,3.5rem);padding-right:clamp(1.2rem,4vw,3.5rem)}
+.grad{background:linear-gradient(180deg,#fff 0%,#9a9a9a 52%,#2e2e2e 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.lbl{font:400 .68rem var(--d);letter-spacing:.22em;text-transform:uppercase;color:var(--g4)}
+#hero{height:100svh;min-height:560px;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:clamp(1.5rem,4vw,3rem)}
+.mask{overflow:hidden;padding-bottom:.08em}
+#hero h1{font:300 clamp(3rem,17.5vw,19rem);font-family:var(--d);letter-spacing:-.05em;line-height:.9;white-space:nowrap}
+.hrow{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-top:1.6rem}
+.hrow p{max-width:24rem;color:var(--g4);line-height:1.6;font-size:.95rem}
+.sc{display:flex;align-items:center;gap:.8rem}.sc i{display:block;width:3rem;height:1px;background:var(--g3);transform-origin:left;animation:ln 2.4s cubic-bezier(.7,0,.2,1) infinite}
+@keyframes ln{0%{transform:scaleX(0)}50%{transform:scaleX(1)}100%{transform:scaleX(1);opacity:0}}
+#manifesto{min-height:150svh;display:flex;align-items:center;padding-top:20svh;padding-bottom:20svh}
+#manifesto p{font:300 clamp(1.7rem,4.6vw,4.6rem)/1.12 var(--d);letter-spacing:-.03em;max-width:15em}
+#manifesto .w{opacity:.13}
+#states{height:100svh;position:relative;overflow:hidden}
+.beat{position:absolute;left:clamp(1.2rem,4vw,3.5rem);bottom:16svh;max-width:min(32rem,86vw)}
+.beat b{display:block;font:300 clamp(5rem,15vw,13rem)/.85 var(--d);letter-spacing:-.06em;margin-bottom:1.2rem}
+.beat h3{font:500 1.15rem var(--d);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.8rem}
+.beat p{color:var(--g4);line-height:1.65}
+.bar{position:absolute;left:clamp(1.2rem,4vw,3.5rem);right:clamp(1.2rem,4vw,3.5rem);bottom:6svh;height:1px;background:var(--g2)}
+.bar i{display:block;height:100%;background:var(--w);transform:scaleX(0);transform-origin:left}
+#band{padding:16svh 0 8svh;overflow:hidden}
+.mq{display:flex;white-space:nowrap;width:max-content;font:300 clamp(4rem,14vw,13rem)/1 var(--d);letter-spacing:-.05em;-webkit-text-stroke:1px #777;color:transparent;will-change:transform}
+.mq span{padding-right:.5em}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:12svh;border-top:1px solid var(--g2);padding-top:2rem}
+.stats b{display:block;font:300 clamp(1.8rem,4vw,3.4rem) var(--d);letter-spacing:-.04em;margin-bottom:.5rem}
+#contact{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:clamp(1.5rem,4vw,3rem)}
+#contact h2{font:300 clamp(2.6rem,10vw,10rem)/.95 var(--d);letter-spacing:-.05em}
+#contact a{color:var(--w);text-decoration:none;font:400 clamp(1rem,2vw,1.5rem) var(--t);border-bottom:1px solid var(--g3);padding-bottom:.3rem;transition:border-color .4s,letter-spacing .4s}
+#contact a:hover{border-color:var(--w);letter-spacing:.04em}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:5rem;padding-top:1.5rem;border-top:1px solid var(--g2)}
+@media(max-width:700px){.stats{grid-template-columns:1fr}.hrow{flex-direction:column;align-items:flex-start}}
+@media(prefers-reduced-motion:reduce){.sc i{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="gl"></canvas><div class="grain"></div>
+<nav><span>Obsidian®</span><span>Edition 01 — 2026</span></nav>
+<main id="main">
+<section id="hero" class="pad">
+  <div class="mask"><h1 class="grad" id="ttl">OBSIDIAN</h1></div>
+  <div class="hrow">
+    <p>A studio casting liquid metal into objects that hold perfect stillness. Nine pieces per edition. Never repeated.</p>
+    <div class="sc lbl"><i></i>Scroll</div>
+  </div>
+</section>
+<section id="manifesto" class="pad">
+  <p id="mf">We pour mercury into silence, then wait until it forgets it was ever moving. What remains is not a sculpture. It is a held breath.</p>
+</section>
+<section id="states">
+  <div class="beat"><b class="grad">01</b><h3>Liquid</h3><p>The alloy is poured at 1,380 °C and left to move on its own. We only steer it with gravity and patience.</p></div>
+  <div class="beat"><b class="grad">02</b><h3>Fracture</h3><p>At the critical second, tension breaks the surface into ridges no mould could ever plan or repeat.</p></div>
+  <div class="beat"><b class="grad">03</b><h3>Stillness</h3><p>412 hours of hand polishing until the object reflects the room better than the room deserves.</p></div>
+  <div class="bar"><i></i></div>
+</section>
+<section id="band">
+  <div class="mq" id="mq"><span>Liquid — Fracture — Stillness —</span><span>Liquid — Fracture — Stillness —</span></div>
+  <div class="stats pad">
+    <div><b class="grad">09</b><span class="lbl">Pieces per edition</span></div>
+    <div><b class="grad">412 h</b><span class="lbl">Hand polish per piece</span></div>
+    <div><b class="grad">0.03 mm</b><span class="lbl">Surface tolerance</span></div>
+  </div>
+</section>
+<section id="contact" class="pad">
+  <p class="lbl" style="margin-bottom:1.5rem">Edition 01 opens 12.11</p>
+  <div class="mask"><h2 class="grad">Own the<br>stillness.</h2></div>
+  <p style="margin-top:2.5rem"><a href="mailto:hello@obsidian.studio">hello@obsidian.studio</a></p>
+  <div class="foot lbl"><span>Amsterdam</span><span>© 2026 Obsidian Studio</span><span>Instagram / Are.na</span></div>
+</section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script>
+(function(){
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mobile = innerWidth < 800;
+
+/* ---------- Shaders ---------- */
+const NOISE = `
+vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}
+vec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}
+vec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}
+vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}
+float snoise(vec3 v){
+  const vec2 C=vec2(1.0/6.0,1.0/3.0); const vec4 D=vec4(0.0,0.5,1.0,2.0);
+  vec3 i=floor(v+dot(v,C.yyy)); vec3 x0=v-i+dot(i,C.xxx);
+  vec3 g=step(x0.yzx,x0.xyz); vec3 l=1.0-g;
+  vec3 i1=min(g.xyz,l.zxy); vec3 i2=max(g.xyz,l.zxy);
+  vec3 x1=x0-i1+C.xxx; vec3 x2=x0-i2+C.yyy; vec3 x3=x0-D.yyy;
+  i=mod289(i);
+  vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));
+  float n_=0.142857142857; vec3 ns=n_*D.wyz-D.xzx;
+  vec4 j=p-49.0*floor(p*ns.z*ns.z); vec4 x_=floor(j*ns.z); vec4 y_=floor(j-7.0*x_);
+  vec4 x=x_*ns.x+ns.yyyy; vec4 y=y_*ns.x+ns.yyyy; vec4 h=1.0-abs(x)-abs(y);
+  vec4 b0=vec4(x.xy,y.xy); vec4 b1=vec4(x.zw,y.zw);
+  vec4 s0=floor(b0)*2.0+1.0; vec4 s1=floor(b1)*2.0+1.0; vec4 sh=-step(h,vec4(0.0));
+  vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy; vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;
+  vec3 p0=vec3(a0.xy,h.x); vec3 p1=vec3(a0.zw,h.y); vec3 p2=vec3(a1.xy,h.z); vec3 p3=vec3(a1.zw,h.w);
+  vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));
+  p0*=norm.x; p1*=norm.y; p2*=norm.z; p3*=norm.w;
+  vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0); m=m*m;
+  return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));
+}`;
+const VERT = NOISE + `
+uniform float uTime; uniform float uAmp; uniform float uFreq;
+varying vec3 vN; varying vec3 vV;
+vec3 displace(vec3 p){
+  float n = snoise(p*uFreq + vec3(0.0,0.0,uTime*0.25));
+  n += 0.35*snoise(p*uFreq*2.3 - vec3(uTime*0.2,0.0,0.0));
+  return p + normalize(p)*n*uAmp;
+}
+void main(){
+  vec3 n0 = normalize(position);
+  vec3 up = abs(n0.y) > 0.99 ? vec3(1.0,0.0,0.0) : vec3(0.0,1.0,0.0);
+  vec3 t = normalize(cross(n0, up));
+  vec3 b = cross(n0, t);
+  float e = 0.012;
+  vec3 pd = displace(n0);
+  vec3 p1 = displace(normalize(n0 + t*e));
+  vec3 p2 = displace(normalize(n0 + b*e));
+  vec3 nn = normalize(cross(p1 - pd, p2 - pd));
+  vN = normalize(normalMatrix * nn);
+  vec4 mv = modelViewMatrix * vec4(pd, 1.0);
+  vV = -mv.xyz;
+  gl_Position = projectionMatrix * mv;
+}`;
+const FRAG = `
+varying vec3 vN; varying vec3 vV;
+vec3 env(vec3 r){
+  float g = 0.5 + 0.5*r.y;
+  vec3 c = vec3(0.015) + vec3(0.09)*g;
+  float s1 = smoothstep(0.84, 0.97, dot(r, normalize(vec3(0.6,0.7,0.5))));
+  float s2 = smoothstep(0.90, 0.99, dot(r, normalize(vec3(-0.8,0.2,0.4))));
+  float st = smoothstep(0.03, 0.0, abs(r.y - 0.2)) * smoothstep(-0.3, 0.6, r.x);
+  float fl = smoothstep(-0.6, -1.0, r.y) * 0.35;
+  return c + vec3(1.5)*s1 + vec3(0.9)*s2 + vec3(0.7)*st + vec3(fl);
+}
+void main(){
+  vec3 N = normalize(vN);
+  vec3 V = normalize(vV);
+  vec3 R = reflect(-V, N);
+  float f = pow(1.0 - max(dot(N, V), 0.0), 3.0);
+  vec3 col = env(R) * (0.55 + 0.7*f);
+  col += vec3(0.5) * f * 0.3;
+  col = col / (1.0 + col);
+  col = pow(col, vec3(0.85));
+  gl_FragColor = vec4(col, 1.0);
+}`;
+const PV = `
+attribute float aS; uniform float uTime; uniform float uPR;
+varying float vA;
+void main(){
+  vec3 p = position;
+  p.x += sin(uTime*0.1 + aS*20.0)*0.18;
+  p.y += cos(uTime*0.08 + aS*13.0)*0.18;
+  vec4 mv = modelViewMatrix * vec4(p, 1.0);
+  gl_PointSize = (1.2 + aS*3.0) * uPR * (6.0 / max(-mv.z, 0.5));
+  vA = 0.15 + 0.6*aS;
+  gl_Position = projectionMatrix * mv;
+}`;
+const PF = `
+varying float vA;
+void main(){
+  float d = length(gl_PointCoord - 0.5);
+  float a = smoothstep(0.5, 0.0, d) * vA;
+  gl_FragColor = vec4(vec3(0.85), a);
+}`;
+
+/* ---------- Three scene ---------- */
+const canvas = document.getElementById('gl');
+let renderer, scene, cam, mesh, pts, mat, pmat;
+const S = {x:0, y:0, s:1, amp:.25, freq:1.1, r:0};     // scroll-driven targets (tweaked by GSAP timeline)
+const P = {x:0, y:0, s:1, amp:.25, freq:1.1, r:0, mx:0, my:0}; // damped values read by render loop
+const M = {x:0, y:0}; const INTRO = {v:0}; // intro scale-in multiplier
+try{
+  renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true, powerPreference:'high-performance'});
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+  renderer.setClearColor(0x000000, 0);
+  scene = new THREE.Scene();
+  cam = new THREE.PerspectiveCamera(38, 1, .1, 100); cam.position.z = 5.6;
+  const seg = mobile ? 96 : 160;
+  mat = new THREE.ShaderMaterial({vertexShader:VERT, fragmentShader:FRAG,
+    uniforms:{uTime:{value:0}, uAmp:{value:.25}, uFreq:{value:1.1}}});
+  mesh = new THREE.Mesh(new THREE.SphereGeometry(1, seg, seg), mat);
+  mesh.frustumCulled = false; scene.add(mesh);
+  const N = mobile ? 900 : 2000, pos = new Float32Array(N*3), aS = new Float32Array(N);
+  for(let i=0;i<N;i++){
+    const r = 2.6 + Math.random()*7, th = Math.random()*6.283, ph = Math.acos(2*Math.random()-1);
+    pos[i*3] = r*Math.sin(ph)*Math.cos(th); pos[i*3+1] = r*Math.sin(ph)*Math.sin(th)*1.2; pos[i*3+2] = r*Math.cos(ph)-4; aS[i] = Math.random();
+  }
+  const pg = new THREE.BufferGeometry();
+  pg.setAttribute('position', new THREE.BufferAttribute(pos,3)); pg.setAttribute('aS', new THREE.BufferAttribute(aS,1));
+  pmat = new THREE.ShaderMaterial({vertexShader:PV, fragmentShader:PF, transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
+    uniforms:{uTime:{value:0}, uPR:{value:renderer.getPixelRatio()}}});
+  pts = new THREE.Points(pg, pmat); pts.frustumCulled = false; scene.add(pts);
+}catch(e){ console.warn('WebGL unavailable', e); canvas.style.display='none'; renderer = null; }
+
+function resize(){
+  if(!renderer) return;
+  renderer.setSize(innerWidth, innerHeight, false);
+  cam.aspect = innerWidth/innerHeight; cam.updateProjectionMatrix();
+}
+addEventListener('resize', resize); resize();
+addEventListener('pointermove', e=>{ M.x = e.clientX/innerWidth*2-1; M.y = e.clientY/innerHeight*2-1; });
+
+/* ---------- Smooth scroll (Lenis + GSAP) ---------- */
+gsap.registerPlugin(ScrollTrigger);
+let lenis = null, sk = null;
+if(!RM && window.Lenis){
+  lenis = new Lenis({lerp:.085, wheelMultiplier:1});
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(t => lenis.raf(t*1000));
+  gsap.ticker.lagSmoothing(0);
+  sk = gsap.quickTo('#mq', 'skewX', {duration:.5, ease:'power3.out'});
+  lenis.on('scroll', ({velocity}) => sk(gsap.utils.clamp(-8, 8, -velocity*.5)));
+}
+
+/* ---------- Render loop ---------- */
+const clock = new THREE.Clock(); let scrollP = 0;
+ScrollTrigger.create({start:0, end:'max', onUpdate:s=>{ scrollP = s.progress; }});
+function frame(){
+  requestAnimationFrame(frame);
+  if(!renderer) return;
+  const dt = Math.min(clock.getDelta(), .05), t = clock.elapsedTime, D = THREE.MathUtils.damp;
+  for(const k of ['x','y','s','amp','freq','r']) P[k] = D(P[k], S[k], 3.2, dt);
+  P.mx = D(P.mx, M.x, 3, dt); P.my = D(P.my, M.y, 3, dt);
+  const xs = mobile ? .28 : 1;
+  mesh.position.set(P.x*xs + P.mx*.12, -P.y - P.my*.08, 0);
+  mesh.scale.setScalar(P.s * (mobile ? .82 : 1) * (.2 + .8*INTRO.v));
+  mesh.rotation.set(P.my*.25, t*(RM?.02:.09) + P.r + P.mx*.3, 0);
+  mat.uniforms.uTime.value = t % 1000; mat.uniforms.uAmp.value = P.amp; mat.uniforms.uFreq.value = P.freq;
+  pmat.uniforms.uTime.value = t % 1000;
+  pts.rotation.y = t*.008 + scrollP*1.6; pts.position.y = scrollP*5;
+  renderer.render(scene, cam);
+}
+frame();
+
+/* ---------- Scroll choreography ---------- */
+// Scroll map (in screens): hero 0-1 | manifesto 1-2.5 | states (pinned) 2.5-7.5 | band 7.5-8.3 | contact 8.3-9.3
+const tl = gsap.timeline({defaults:{ease:'power2.inOut'}, scrollTrigger:{trigger:'#main', start:'top top', end:'bottom bottom', scrub:.3, invalidateOnRefresh:true}});
+tl.to(S, {x:1.75, s:.85, amp:.22, freq:1.2, r:1.2, duration:1.3}, .2)           // hero -> manifesto (object drifts right)
+  .to(S, {x:0, s:1.3, amp:.5, freq:1.6, r:2.4, duration:1.7}, 2.5)              // 01 Liquid
+  .to(S, {x:-1.7, s:1.1, amp:.95, freq:2.5, r:3.6, duration:1.7}, 4.2)          // 02 Fracture
+  .to(S, {x:0, s:1.25, amp:.03, freq:.8, r:4.8, duration:1.6}, 5.9)             // 03 Stillness (near-perfect chrome)
+  .to(S, {x:.2, y:-.2, s:.8, amp:.3, freq:1.3, r:6, duration:.8}, 7.5)          // band
+  .to(S, {x:0, y:1.05, s:1.7, amp:.18, freq:1, r:7, duration:1}, 8.3)           // contact (rises from below)
+  .to({}, {duration:.001}, 9.3);
+
+// Pinned "states" scene: three text beats
+const beats = gsap.utils.toArray('.beat');
+const pin = gsap.timeline({defaults:{ease:'none'}, scrollTrigger:{trigger:'#states', start:'top top', end:'+=400%', pin:true, scrub:.3}});
+beats.forEach((b,i)=>{
+  pin.fromTo(b, {autoAlpha:0, y:50}, {autoAlpha:1, y:0, ease:'power3.out', duration:.6}, i*3);
+  if(i<2) pin.to(b, {autoAlpha:0, y:-50, ease:'power2.in', duration:.6}, i*3+2.4);
+});
+pin.to('.bar i', {scaleX:1, duration:9}, 0);
+
+// Manifesto: word-by-word reveal
+const mf = document.getElementById('mf');
+mf.innerHTML = mf.textContent.split(' ').map(w=>`<span class="w">${w}</span>`).join(' ');
+gsap.to('#mf .w', {opacity:1, stagger:.12, ease:'none', scrollTrigger:{trigger:'#manifesto', start:'top 70%', end:'bottom 65%', scrub:.3}});
+
+// Marquee drift + stats reveal + contact mask
+gsap.to('#mq', {xPercent:-38, ease:'none', scrollTrigger:{trigger:'#band', start:'top bottom', end:'bottom top', scrub:.3}});
+gsap.from('.stats > div', {y:50, autoAlpha:0, stagger:.12, duration:1.2, ease:'expo.out', scrollTrigger:{trigger:'.stats', start:'top 88%'}});
+gsap.from('#contact h2', {yPercent:105, duration:1.4, ease:'expo.out', scrollTrigger:{trigger:'#contact', start:'top 55%'}});
+
+// Intro
+gsap.from('#ttl', {yPercent:110, duration:1.6, ease:'expo.out', delay:.15});
+gsap.from(['.hrow p','.sc','nav span'], {autoAlpha:0, y:16, duration:1.2, stagger:.1, ease:'power3.out', delay:.7});
+if(renderer) gsap.to(INTRO, {v:1, duration:2.2, ease:'expo.out', delay:.1});
+
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=>ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
